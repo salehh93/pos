@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="157.454" height="33.218" viewBox="0 0 157.454 33.218">
+  <g id="logo" transform="translate(-942.546 -44)">
+    <g id="logo-ar" transform="translate(509.37 42.419)">
+      <g id="icon" transform="translate(433.176 1)">
+        <g id="icon-2" data-name="icon" transform="translate(0 0.581)">
+          <g id="Group_1" data-name="Group 1" transform="translate(0.032 16.03)">
+            <rect id="Rectangle_1" data-name="Rectangle 1" width="4.361" height="17.027" fill="#212090"/>
+            <rect id="Rectangle_2" data-name="Rectangle 2" width="4.361" height="17.027" transform="translate(5.399)" fill="#212090"/>
+            <rect id="Rectangle_3" data-name="Rectangle 3" width="4.153" height="17.027" transform="translate(10.798)" fill="#212090"/>
+          </g>
+          <g id="Group_4" data-name="Group 4" transform="translate(16.263 33.218) rotate(-90)">
+            <rect id="Rectangle_1-2" data-name="Rectangle 1" width="4.152" height="17.647" fill="#41bcd0"/>
+            <rect id="Rectangle_2-2" data-name="Rectangle 2" width="4.152" height="17.647" transform="translate(5.176)" fill="#41bcd0"/>
+            <rect id="Rectangle_3-2" data-name="Rectangle 3" width="4.152" height="17.647" transform="translate(10.351)" fill="#41bcd0"/>
+          </g>
+          <g id="Group_2" data-name="Group 2" transform="translate(18.927 0.042)">
+            <rect id="Rectangle_1-3" data-name="Rectangle 1" width="4.153" height="17.027" fill="#212090"/>
+            <rect id="Rectangle_2-3" data-name="Rectangle 2" width="4.361" height="17.027" transform="translate(5.191)" fill="#212090"/>
+            <rect id="Rectangle_3-3" data-name="Rectangle 3" width="4.361" height="17.027" transform="translate(10.59)" fill="#212090"/>
+          </g>
+          <g id="Group_3" data-name="Group 3" transform="translate(0 14.351) rotate(-90)">
+            <rect id="Rectangle_1-4" data-name="Rectangle 1" width="4.152" height="17.467" fill="#212090"/>
+            <rect id="Rectangle_2-4" data-name="Rectangle 2" width="4.152" height="17.467" transform="translate(5.1)" fill="#212090"/>
+            <rect id="Rectangle_3-4" data-name="Rectangle 3" width="4.152" height="17.467" transform="translate(10.199)" fill="#212090"/>
+          </g>
+        </g>
+        <text id="MTC" transform="translate(5.015 4)" fill="#f1f4f5" font-size="3" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">MTC</tspan></text>
+      </g>
+    </g>
+    <g id="Group_14061" data-name="Group 14061">
+      <text id="MTC_WORKFLOW" data-name="MTC WORKFLOW" transform="translate(980 61)" fill="#6d6e71" font-size="17" font-family="SourceSansPro-Regular, Source Sans Pro"><tspan x="0" y="0">MTC WORKFLOW</tspan></text>
+      <text id="project_management_system" data-name="project management system" transform="translate(980 74)" fill="#6d6e71" font-size="9" font-family="SourceSansPro-Regular, Source Sans Pro" letter-spacing="0.05em"><tspan x="0" y="0">project management system</tspan></text>
+    </g>
+  </g>
+</svg>

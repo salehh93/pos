@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="358" height="293" viewBox="0 0 358 293">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.978" y1="0.988" x2="-0.027" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#0190db"/>
+      <stop offset="1" stop-color="#013592"/>
+    </linearGradient>
+  </defs>
+  <g id="logo" transform="translate(-1825 -297.001)">
+    <g id="Group_560" data-name="Group 560" transform="translate(1382.001 -150)">
+      <path id="Union_1" data-name="Union 1" d="M-10465-4077a15,15,0,0,1,11-14.457V-4109h-11v-30h11v-17.787l-13.215-13.214h-15.325a15.005,15.005,0,0,1-14.46,11,15,15,0,0,1-15-15,15,15,0,0,1,15-15,15.005,15.005,0,0,1,14.46,11h15.328l13.212-13.215V-4206h-11v-30h11v-17h-11v-30h30v11h17v-11h30v11h16v-11h2a61.593,61.593,0,0,1,24.134,4.873,61.756,61.756,0,0,1,19.707,13.286,61.787,61.787,0,0,1,13.288,19.707A61.615,61.615,0,0,1-10308-4221a61.621,61.621,0,0,1-4.873,24.134,61.8,61.8,0,0,1-13.288,19.707,61.833,61.833,0,0,1-19.707,13.291A61.68,61.68,0,0,1-10370-4159h-2v-11h-16v11h-30v-11h-14.787l-13.212,13.212V-4139h11v30h-11v17.539a15.005,15.005,0,0,1,11,14.46,15,15,0,0,1-15,15A15,15,0,0,1-10465-4077Zm77-112v11h16v-10.948a32.109,32.109,0,0,0,31.948-32.054,32.108,32.108,0,0,0-31.948-32.049V-4264h-16v11h-30v-11h-17v11h-11v17h11v30h-11v14.787l13.212,13.212H-10418v-11Z" transform="translate(11071 4730)" fill="url(#linear-gradient)"/>
+    </g>
+    <text id="Power_Flow" data-name="Power Flow" transform="translate(2004 575.001)" font-size="61" font-family="Montserrat-Regular, Montserrat"><tspan x="-178.15" y="0">Power Flow</tspan></text>
+  </g>
+</svg>
