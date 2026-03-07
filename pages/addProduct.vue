@@ -20,14 +20,14 @@
                     <h1 class="title-page">إضافة منتج جديد</h1>
                 </div>
                 <div class="col-auto">
-                        <button class="btn btn-primary loading-click">
+                        <nuxt-link to="/products" class="btn btn-primary loading-click">
                           <div class="d-flex align-items-center">
                    
                               <span class="">عرض المنتجات</span>
 
                           </div>
 
-                        </button>
+                        </nuxt-link>
                 </div>
             </div>
            
@@ -50,11 +50,15 @@
 
                                         
                                         <div>
-                                            <select class="selectpicker show-menu-arrow w-100 border-dark" v-model="form.categoryId">
-                                                <option  selected>اختر من القائمة</option>
-                                                <option value="6e5b5df4-07c1-4ced-a9d1-e3f2db102f5b">option 1 </option>
-                                                <option value="6e5b5df4-07c1-4ced-a9d1-e3f2db102f5b">option 2</option>
-                                              </select>
+                                          <select class="selectpicker show-menu-arrow w-100 border-dark" v-model="form.categoryId">
+    <option value="" disabled selected>اختر من القائمة</option>
+
+    <option v-for="item in category"
+            :key="item.id"
+            :value="item.id">
+        {{ item.name }}
+    </option>
+</select>
                                         </div>     
                                     </div>
                                 </div>
@@ -88,7 +92,7 @@
                                         <label>سعر البيع</label>
                                 
                                         <div>
-                                            <input type="number" placeholder="00.00" required="" name="" id="" class="form-control " v-model="form.salePrice" >
+                                            <input type="number" placeholder="00.00" required="" name="" id="" class="form-control " v-model="form.priceToPay" >
 
                                         </div>
                                         <small>لتحديد السعر عند البيع , اترك هذا الحقل فارغاً</small>
@@ -152,7 +156,7 @@
                         </div>
 
 
-                      <div class="row py-3" v-if="allowstockCount==true">
+                      <div class="row py-3" >
                         <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label>متوفر</label>
@@ -200,14 +204,18 @@
         
         
                                     </label>
-                                   <input 
-                                    type="file" 
+                             
+                                    <input 
+                                      type="file" 
                                     id="fileuplaod1" 
                                     ref="productImage"
                                     name="profile_picture" 
                                     class="fileuplaod" 
-                                    @change="form.file = $refs.productImage.files"
-                                    />
+
+
+  @change="handleFile"
+/>
+
                                     <img id=""  class="img-preview w-100" src="img/bg-slider.png" alt="your image" />
                                 </div>
         
@@ -262,8 +270,8 @@ export default {
      token: localStorage.getItem('accessToken'),
     tokenType: localStorage.getItem('tokenType'),
       userAfter:'',
-      allowstockCount :false ,
-
+      allowstockCount :true ,
+category: [], // Array to store API data
       form:{
         name:'',
         unitId:'',
@@ -272,8 +280,8 @@ export default {
         salePrice:'',
         sku:'',
         barcode:'',
-        stockCount:'',
-        lowStockCount:'',
+        stockCount:1,
+        lowStockCount:null,
         categoryId:'',
         file: [], 
        
@@ -284,34 +292,53 @@ export default {
   computed: {
 
   },
+methods: {
+  async getcategory() {
    
-  methods: {
-async addProduct() {
+    try {
+      const response = await axios.get('https://pos-sa.cloud/api/category', {
+        headers: {
+          Authorization: `${this.tokenType} ${this.token}`
+        }
+      });
+      // Assuming the API returns the array directly or in a 'data' property
+      this.category = response.data; 
+    } catch (error) {
+      console.error("Error fetching category:", error);
+    }
+  },
+  handleFile() {
+    this.form.file = this.$refs.productImage.files[0];
+  },
+  async addProduct() {
   try {
 
-    if (this.allowstockCount === true) {
-      this.form.stockCount = 0;
-      this.form.lowStockCount = 0;
+   
+
+    const formData = new FormData();
+
+    formData.append('name', this.form.name);
+    formData.append('unitId', null);
+    formData.append('priceToPay', this.form.priceToPay);
+    formData.append('originalPrice', this.form.originalPrice);
+    formData.append('salePrice', this.form.salePrice);
+    formData.append('sku', this.form.sku);
+    formData.append('barcode', String(this.form.barcode || ''));
+    formData.append('stockCount', this.form.stockCount);
+    formData.append('lowStockCount', this.form.lowStockCount);
+    formData.append('categoryId', this.form.categoryId);
+
+    if (this.form.file) {
+      formData.append('file', this.form.file);
     }
 
     const response = await axios.post(
       'https://pos-sa.cloud/api/product',
-      {
-        name: this.form.name,
-        unitId: null,
-        priceToPay: this.form.priceToPay,
-        originalPrice: this.form.originalPrice,
-        salePrice: this.form.salePrice,
-        sku: this.form.sku,
-        barcode: String(this.form.barcode || null),
-        stockCount: this.form.stockCount,
-        lowStockCount: this.form.lowStockCount,
-        categoryId: null,
-        file : this.form.file
-      },
+      formData,
       {
         headers: {
-          Authorization: `${this.tokenType} ${this.token}`
+          Authorization: `${this.tokenType} ${this.token}`,
+          'Content-Type': 'multipart/form-data'
         }
       }
     );
@@ -330,20 +357,16 @@ async addProduct() {
 
 
 
+
   },
   async mounted() {
-   
-
-
     const userdata = localStorage.getItem('user');
     if (userdata) {
       this.userAfter = JSON.parse(userdata);
     }
     
-
-
+    await this.getcategory();
   }
-
 }
 
   

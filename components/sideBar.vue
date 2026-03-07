@@ -21,7 +21,10 @@
             <div class="">
                 <ul class="list-right-body py-3 ps-3 row gy-3">
                     <li class="col-12">
-                        <a  class="active" href="#">
+                          <nuxt-link to="/" class="active">
+
+                         
+                       
                             <div class="icon-list-right icon-svg-hover me-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="19.504"
                                 height="19.506" viewBox="0 0 19.504 19.506">
@@ -33,7 +36,8 @@
 
                             </div>
                             <div  class="fs-14">الرئيسية</div>
-                        </a>
+                     
+                         </nuxt-link>
                     </li>
 
                     
@@ -42,7 +46,7 @@
                     
 
                     <li class="col-12">
-                        <a href="#">
+                         <nuxt-link to="/sales" >
                             <div class="icon-list-right icon-svg-hover me-2">
                           <svg xmlns="http://www.w3.org/2000/svg" width="19.5" height="19.5" viewBox="0 0 21.556 26.483">
   <g id="Group_84" data-name="Group 84" transform="translate(-3.25 -1.25)">
@@ -56,30 +60,38 @@
 
                             </div>
                             <div class="fs-14">المبيعات</div>
-                        </a>
+                      </nuxt-link>
                     </li>
-                    <li class="col-12">
-                        <a href="#">
-                            <div class="icon-list-right icon-svg-hover me-2">
+                         <li class="col-12">
+                        <div class="accordion accordion-flush w-100 border-0" id="accordionFlushExample">
+                            <div class="accordion-item border-0">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button collapsed p-0 w-100 fs-14" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                            aria-expanded="false" aria-controls="flush-collapseOne">
+                                            <span class="icon-list-right icon-svg-hover me-2">
 
-                                <svg id="Group_19" data-name="Group 19" xmlns="http://www.w3.org/2000/svg" width="19.5" height="19.5" viewBox="0 0 20.327 25.051">
-  <path id="Path_38" data-name="Path 38" d="M68.318,6.5,62.03.215A.733.733,0,0,0,61.511,0H50.9a2.709,2.709,0,0,0-2.7,2.7V22.351a2.709,2.709,0,0,0,2.7,2.7H65.828a2.709,2.709,0,0,0,2.7-2.7V7.018a.733.733,0,0,0-.215-.517Zm-6.073-4,3.783,3.783H63.477a1.232,1.232,0,0,1-1.232-1.232Zm3.583,21.078H50.893a1.232,1.232,0,0,1-1.232-1.232V2.7A1.232,1.232,0,0,1,50.9,1.469h9.878V5.06a2.709,2.709,0,0,0,2.7,2.7h3.591v14.6a1.232,1.232,0,0,1-1.232,1.232Z" transform="translate(-48.2 0)" fill="#6a0aa1"/>
-  <path id="Path_39" data-name="Path 39" d="M116.344,224.933H113.2a.733.733,0,0,0-.733.733v3.145a.733.733,0,0,0,.733.733h3.145a.733.733,0,0,0,.733-.733v-3.145a.733.733,0,0,0-.733-.733Zm-.733,3.145h-1.678V226.4h1.678Z" transform="translate(-109.322 -213.927)" fill="#6a0aa1"/>
-  <path id="Path_40" data-name="Path 40" d="M116.344,353.467H113.2a.733.733,0,0,0-.733.733v3.145a.733.733,0,0,0,.733.733h3.145a.733.733,0,0,0,.733-.733V354.2A.733.733,0,0,0,116.344,353.467Zm-.733,3.144h-1.678v-1.678h1.678Z" transform="translate(-109.322 -336.172)" fill="#6a0aa1"/>
-  <path id="Path_41" data-name="Path 41" d="M241,225.667a.733.733,0,0,0,.733.733h3.145a.734.734,0,1,0,0-1.469h-3.145a.733.733,0,0,0-.733.734Z" transform="translate(-231.566 -213.928)" fill="#6a0aa1"/>
-  <path id="Path_42" data-name="Path 42" d="M248.02,289.2h-6.289a.734.734,0,0,0,0,1.469h6.289a.734.734,0,1,0,0-1.469Z" transform="translate(-231.569 -275.051)" fill="#6a0aa1"/>
-  <path id="Path_43" data-name="Path 43" d="M241.734,354.935h3.145a.734.734,0,0,0,0-1.469h-3.145a.735.735,0,0,0,0,1.469Z" transform="translate(-231.567 -336.173)" fill="#6a0aa1"/>
-  <path id="Path_44" data-name="Path 44" d="M248.02,417.733h-6.289a.735.735,0,0,0,0,1.469h6.289a.734.734,0,1,0,0-1.469Z" transform="translate(-231.569 -397.295)" fill="#6a0aa1"/>
-  <path id="Path_45" data-name="Path 45" d="M113.2,81.8h3.93a.734.734,0,0,0,0-1.469H113.2a.734.734,0,1,0,0,1.469Z" transform="translate(-109.322 -76.403)" fill="#6a0aa1"/>
-  <path id="Path_46" data-name="Path 46" d="M113.2,146.069h6.289a.734.734,0,1,0,0-1.469H113.2a.734.734,0,0,0,0,1.469Z" transform="translate(-109.322 -137.526)" fill="#6a0aa1"/>
+                                                <svg id="Group_90" data-name="Group 90" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19.5" height="19.5" viewBox="0 0 27.926 27.926">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Path_62" data-name="Path 62" d="M0,0H27.926V27.926H0Z" fill="#767576"/>
+    </clipPath>
+  </defs>
+  <g id="Group_90-2" data-name="Group 90" clip-path="url(#clip-path)">
+    <path id="Path_60" data-name="Path 60" d="M7.481,15.927a.873.873,0,0,0-.717,1.592l2.327,1.047a.873.873,0,1,0,.717-1.592Z" transform="translate(1.022 2.593)" fill="#767576"/>
+    <path id="Path_61" data-name="Path 61" d="M15.844,1.721a4.945,4.945,0,0,0-4.17,0L4.11,5.238A4.945,4.945,0,0,0,1.25,9.722v8.163a4.945,4.945,0,0,0,2.9,4.5l7.564,3.442a4.945,4.945,0,0,0,4.1,0l7.563-3.442a4.945,4.945,0,0,0,2.9-4.5V9.722a4.945,4.945,0,0,0-2.859-4.483ZM12.41,3.3a3.2,3.2,0,0,1,2.7,0l7.563,3.518a3.191,3.191,0,0,1,1.313,1.126L20.517,9.59,9.968,4.439ZM7.93,5.386,4.846,6.822A3.2,3.2,0,0,0,3.531,7.948l10.228,4.843,4.74-2.246ZM3,9.626l9.891,4.685v10.1a3.217,3.217,0,0,1-.454-.166L4.869,20.8a3.2,3.2,0,0,1-1.875-2.912V9.625ZM14.631,24.405a3.2,3.2,0,0,0,.451-.165L22.646,20.8a3.2,3.2,0,0,0,1.875-2.912V9.625L14.63,14.309Z" transform="translate(0.204 0.206)" fill="#767576" fill-rule="evenodd"/>
+  </g>
 </svg>
-
-                            </div>
-                            <div class="fs-14">الطلبيات</div>
-                        </a>
-                    </li>
-                    <li class="col-12">
-                        <a href="#">
+                                            </span>
+                                        <span class="fs-14">المنتجات</span>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                     aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <ul class="list-accordion">
+                                            <li>
+                                              <nuxt-link to="/products"  class=" justify-content-start">
                             <div class="icon-list-right icon-svg-hover me-2">
 
                            <svg id="Group_90" data-name="Group 90" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19.5" height="19.5" viewBox="0 0 27.926 27.926">
@@ -97,21 +109,74 @@
 
                             </div>
                             <div class="fs-14">المنتجات</div>
-                        </a>
-                    </li>
+                        </nuxt-link>
+                                            </li>
+                                            <li>
+                                                <nuxt-link to="/category" class=" justify-content-start">
+                            <div class="icon-list-right icon-svg-hover me-2">
+
+                           <svg id="Group_90" data-name="Group 90" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19.5" height="19.5" viewBox="0 0 27.926 27.926">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Path_62" data-name="Path 62" d="M0,0H27.926V27.926H0Z" fill="#767576"/>
+    </clipPath>
+  </defs>
+  <g id="Group_90-2" data-name="Group 90" clip-path="url(#clip-path)">
+    <path id="Path_60" data-name="Path 60" d="M7.481,15.927a.873.873,0,0,0-.717,1.592l2.327,1.047a.873.873,0,1,0,.717-1.592Z" transform="translate(1.022 2.593)" fill="#767576"/>
+    <path id="Path_61" data-name="Path 61" d="M15.844,1.721a4.945,4.945,0,0,0-4.17,0L4.11,5.238A4.945,4.945,0,0,0,1.25,9.722v8.163a4.945,4.945,0,0,0,2.9,4.5l7.564,3.442a4.945,4.945,0,0,0,4.1,0l7.563-3.442a4.945,4.945,0,0,0,2.9-4.5V9.722a4.945,4.945,0,0,0-2.859-4.483ZM12.41,3.3a3.2,3.2,0,0,1,2.7,0l7.563,3.518a3.191,3.191,0,0,1,1.313,1.126L20.517,9.59,9.968,4.439ZM7.93,5.386,4.846,6.822A3.2,3.2,0,0,0,3.531,7.948l10.228,4.843,4.74-2.246ZM3,9.626l9.891,4.685v10.1a3.217,3.217,0,0,1-.454-.166L4.869,20.8a3.2,3.2,0,0,1-1.875-2.912V9.625ZM14.631,24.405a3.2,3.2,0,0,0,.451-.165L22.646,20.8a3.2,3.2,0,0,0,1.875-2.912V9.625L14.63,14.309Z" transform="translate(0.204 0.206)" fill="#767576" fill-rule="evenodd"/>
+  </g>
+</svg>
+
+
+                            </div>
+                            <div class="fs-14">الأقسام</div>
+                        </nuxt-link>
+
+                                            </li>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </li>  
+                    
                     <li class="col-12">
-                        <a href="#">
+                        <nuxt-link to="/orders"  class=" justify-content-start">
+                            <div class="icon-list-right icon-svg-hover me-2">
+
+                                <svg id="Group_19" data-name="Group 19" xmlns="http://www.w3.org/2000/svg" width="19.5" height="19.5" viewBox="0 0 20.327 25.051">
+  <path id="Path_38" data-name="Path 38" d="M68.318,6.5,62.03.215A.733.733,0,0,0,61.511,0H50.9a2.709,2.709,0,0,0-2.7,2.7V22.351a2.709,2.709,0,0,0,2.7,2.7H65.828a2.709,2.709,0,0,0,2.7-2.7V7.018a.733.733,0,0,0-.215-.517Zm-6.073-4,3.783,3.783H63.477a1.232,1.232,0,0,1-1.232-1.232Zm3.583,21.078H50.893a1.232,1.232,0,0,1-1.232-1.232V2.7A1.232,1.232,0,0,1,50.9,1.469h9.878V5.06a2.709,2.709,0,0,0,2.7,2.7h3.591v14.6a1.232,1.232,0,0,1-1.232,1.232Z" transform="translate(-48.2 0)" fill="#6a0aa1"/>
+  <path id="Path_39" data-name="Path 39" d="M116.344,224.933H113.2a.733.733,0,0,0-.733.733v3.145a.733.733,0,0,0,.733.733h3.145a.733.733,0,0,0,.733-.733v-3.145a.733.733,0,0,0-.733-.733Zm-.733,3.145h-1.678V226.4h1.678Z" transform="translate(-109.322 -213.927)" fill="#6a0aa1"/>
+  <path id="Path_40" data-name="Path 40" d="M116.344,353.467H113.2a.733.733,0,0,0-.733.733v3.145a.733.733,0,0,0,.733.733h3.145a.733.733,0,0,0,.733-.733V354.2A.733.733,0,0,0,116.344,353.467Zm-.733,3.144h-1.678v-1.678h1.678Z" transform="translate(-109.322 -336.172)" fill="#6a0aa1"/>
+  <path id="Path_41" data-name="Path 41" d="M241,225.667a.733.733,0,0,0,.733.733h3.145a.734.734,0,1,0,0-1.469h-3.145a.733.733,0,0,0-.733.734Z" transform="translate(-231.566 -213.928)" fill="#6a0aa1"/>
+  <path id="Path_42" data-name="Path 42" d="M248.02,289.2h-6.289a.734.734,0,0,0,0,1.469h6.289a.734.734,0,1,0,0-1.469Z" transform="translate(-231.569 -275.051)" fill="#6a0aa1"/>
+  <path id="Path_43" data-name="Path 43" d="M241.734,354.935h3.145a.734.734,0,0,0,0-1.469h-3.145a.735.735,0,0,0,0,1.469Z" transform="translate(-231.567 -336.173)" fill="#6a0aa1"/>
+  <path id="Path_44" data-name="Path 44" d="M248.02,417.733h-6.289a.735.735,0,0,0,0,1.469h6.289a.734.734,0,1,0,0-1.469Z" transform="translate(-231.569 -397.295)" fill="#6a0aa1"/>
+  <path id="Path_45" data-name="Path 45" d="M113.2,81.8h3.93a.734.734,0,0,0,0-1.469H113.2a.734.734,0,1,0,0,1.469Z" transform="translate(-109.322 -76.403)" fill="#6a0aa1"/>
+  <path id="Path_46" data-name="Path 46" d="M113.2,146.069h6.289a.734.734,0,1,0,0-1.469H113.2a.734.734,0,0,0,0,1.469Z" transform="translate(-109.322 -137.526)" fill="#6a0aa1"/>
+</svg>
+
+                            </div>
+                            <div class="fs-14">الطلبيات</div>
+                        </nuxt-link>
+                    </li>
+                   
+                    <li class="col-12">
+                         <nuxt-link to="/expenses" >
                             <div class="icon-list-right icon-svg-hover me-2">
 
                                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" height="19" width="19" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><g><path d="m100 323.265h60c11.046 0 20-8.954 20-20s-8.954-20-20-20h-60c-11.046 0-20 8.954-20 20s8.954 20 20 20z" fill="#000000" data-original="#000000" class=""></path><path d="m100 243.265h60c11.046 0 20-8.954 20-20s-8.954-20-20-20h-60c-11.046 0-20 8.954-20 20s8.954 20 20 20z" fill="#000000" data-original="#000000" class=""></path><path d="m217.441 303.265c0 11.046 8.954 20 20 20 41.821 0 81.139-16.286 110.711-45.858l146.26-146.274c23.448-23.447 23.452-61.402 0-84.853-23.393-23.394-61.458-23.394-84.853 0l-146.26 146.274c-29.571 29.573-45.858 68.89-45.858 110.711zm220.404-228.7c7.796-7.798 20.486-7.798 28.283 0 7.816 7.814 7.819 20.467 0 28.284l-146.261 146.274c-16.719 16.72-37.624 27.735-60.352 32.068 4.333-22.727 15.349-43.632 32.067-60.352z" fill="#000000" data-original="#000000" class=""></path><path d="m60 483.265c14.776 0 28.978-5.422 39.992-15.27l27.647-24.73h204.361c55.141 0 100-44.86 100-100v-44.863c0-11.046-8.954-20-20-20s-20 8.954-20 20v44.863c0 33.084-26.916 60-60 60h-212c-4.92 0-9.667 1.813-13.334 5.093l-33.338 29.821c-3.669 3.28-8.402 5.086-13.328 5.086-11.028 0-20-8.972-20-20v-240c0-33.084 26.916-60 60-60h167.749c11.046 0 20-8.954 20-20s-8.954-20-20-20h-167.749c-55.141 0-100 44.86-100 100v240c0 33.084 26.916 60 60 60z" fill="#000000" data-original="#000000" class=""></path></g></g></svg>
 
                             </div>
                             <div class="fs-14">المصروفات</div>
-                        </a>
+                        </nuxt-link>
                     </li>
                  
                     <li class="col-12">
-                        <a href="#">
+                        <nuxt-link to="/expenses" >
                             <div class="icon-list-right icon-svg-hover me-2">
 
                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19.5" height="19.5" viewBox="0 0 26.419 26.419">
@@ -130,7 +195,7 @@
 
                             </div>
                             <div class="fs-14">الإعدادات</div>
-                        </a>
+                        </nuxt-link>
                     </li>
                     <li class="col-12">
                         <a href="#">

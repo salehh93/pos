@@ -2,7 +2,7 @@
     
     <div class="About d-flex h-100" id="about">
         <Head>
-        <Title>صالح باي -   المنتجات</Title>
+        <Title>صالح باي -   الأقسام</Title>
 
      </Head>
 
@@ -132,54 +132,92 @@
         <div class="container">
             <div class="row align-items-center justify-content-between pb-3 mt-4 mt-lg-0">
                 <div class="col-auto">
-                    <h1 class="title-page">المنتجات</h1>
+                    <h1 class="title-page">التصنيفات</h1>
                 </div>
                 <div class="col-auto">
-                    <nuxt-link to="/addProduct" class=" btn btn-success" ><svg xmlns="http://www.w3.org/2000/svg" width="10.938" height="10.95" viewBox="0 0 10.938 10.95">
+                    <button data-bs-toggle="modal" data-bs-target="#addCat" class=" btn btn-success" ><svg xmlns="http://www.w3.org/2000/svg" width="10.938" height="10.95" viewBox="0 0 10.938 10.95">
                         <path id="Path_14105" data-name="Path 14105" d="M5.48-5.447H1.157v4.324H-1.112V-5.447H-5.458v-2.28h4.346v-4.346H1.157v4.346H5.48Z" transform="translate(5.458 12.073)" fill="#fff"/>
                       </svg>
-                       إضافة منتج</nuxt-link>
+                       إضافة تصنيف</button>
                 </div>
             </div>
+
+                     <!-- Modal -->
+                            <div class="modal fade " id="addCat" tabindex="-1" aria-labelledby="addCatLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="addCatLabel">اضافة تصنيف جديد</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body bg-light ">
+                                        <div class="  card-proparty " >
+                                          
+                                            <div class="mb-3">
+                                              <div class="mb-2">
+                                                عنوان التصنيف
+                                              </div>
+                                              <div class="input-group">
+                                                <input type="text" v-model="form.name"  id="title" class="form-control" placeholder="عنوان التصنيف" >
+                                               </div>
+                                            </div>
+                                           
+                                          <div class="mb-3">
+                                              <div class="mb-2">
+                                                وصف التصنيف
+                                              </div>
+                                              <div class="input-group">
+                                                <input type="text" v-model="form.description"  id="description" class="form-control" placeholder="وصف التصنيف" >
+                                               </div>
+                                            </div>
+                                       
+                      
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      
+                                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">الغاء</button>
+                                      <button type="button" @click="addCategory" class="btn btn-success" data-bs-dismiss="modal">إضافة</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- Modal -->
+
+                              
             <div class="card  mt-2 p-2">
              
                 <table class="table position-relative mt-2" style="width:100%">
     <thead>
         <tr>
             <th class="text-center" style="width: 5%">#</th>
-            <th style="width: 5%">الصورة</th>
-            <th class="text-start" style="width: 20%">اسم المنتج</th>
-            <th style="width: 20%">متوفر بالمخزن</th>
-            <th style="width: 20%">السعر</th>
-            <th style="width: 20%">الحالة</th>
+           
+            <th class="text-start" style="width: 20%">اسم التصنيفات</th>
+            <th style="width: 20%"> الوصف</th>
+            <th style="width: 20%"> تاريخ الإنشاء</th>
+           
             <th class="" style="width: 10%">الإجراءات</th>
         </tr>
     </thead>
     <tbody>
-        <tr v-for="(product, index) in products" :key="product.id">
+        <tr v-for="(category, index) in category" :key="category.id">
             <td class="text-center" style="width: 5%">{{ index + 1 }}</td>
-            <td style="width: 5%">
-                <img :src="product.images?.[0]?.url 
-      ? 'https://pos-sa.cloud/api/' + product.images[0].url 
-      : '/img/profile.png'" class="img-table" alt="">
-            </td>
+          
             <td style="width: 20%">
-                <div class="fs-14-i mb-1">{{ product.name }}</div>
-                <div class="fs-12-i text-light">{{ product.category?.name || 'بدون قسم' }}</div>
+                <div class="fs-14-i mb-1">{{ category.name }}</div>
+               
             </td>
-            <td class="fs-14-i" style="width: 20%">{{ product.stockCount }}</td>
-            <td class="fs-14-i" style="width: 20%">${{ product.priceToPay }}</td>
-            <td style="width: 20%">
-                <span v-if="product.stockCount > 10" class="bg-light br-5 px-3 py-2 text-success">متاحة</span>
-                <span v-else-if="product.stockCount > 0" class="bg-light br-5 px-3 py-2 text-danger">أوشك على النفاذ</span>
-                <span v-else class="bg-light br-5 px-3 py-2 text-muted">غير متوفر</span>
-            </td>
+            <td class="fs-14-i" style="width: 20%">{{ category.description }}</td>
+            <td class="fs-14-i" style="width: 20%">{{ formatDate(category.createdAt) }}</td>
+           
+        
             <td class="text-end" style="width: 10%">
                 <div class="btn-group">
                     <button class="btn setting-dropdonw dropdown-toggle fs-14" data-bs-toggle="dropdown">اجراءات</button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#" @click="editProduct(product)">تعديل</a></li>
-                        <li><a class="dropdown-item text-danger" href="#" @click="deleteProduct(product.id)">حذف</a></li>
+                        <li><a class="dropdown-item" href="#" @click="editCategory(category)">تعديل</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" @click="deleteCategory(category.id)">حذف</a></li>
                     </ul>
                 </div>
             </td>
@@ -200,26 +238,94 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      products: [], // Array to store API data
+        form: {
+          name: '',
+          description: ''
+        },
+        catName:'',
+      category: [], // Array to store API data
       token: localStorage.getItem('accessToken'),
     tokenType: localStorage.getItem('tokenType'),
     }
   },
   mounted() {
-    this.getProducts(); // Fetch data when page loads
+    this.getcategory(); // Fetch data when page loads
   },
-  methods: {
-    async getProducts() {
+methods: {
+formatDate(date) {
+  const d = new Date(date)
+
+  const day = String(d.getDate()).padStart(2, '0')
+  const month = String(d.getMonth() + 1).padStart(2, '0')
+  const year = d.getFullYear()
+
+  let hours = d.getHours()
+  const minutes = String(d.getMinutes()).padStart(2, '0')
+
+  let period = 'صباحا'
+  if (hours >= 12) {
+    period = 'مساءً'
+  }
+
+  hours = hours % 12
+  if (hours === 0) hours = 12
+
+  return `${day}/${month}/${year} ساعة ${hours}:${minutes} ${period}`
+},
+  async deleteCategory(id) {
+    if (!confirm('هل أنت متأكد من الحذف؟')) return
+
+    try {
+      await axios.delete(`https://pos-sa.cloud/api/category/${id}`, {
+        headers: {
+          Authorization: `${this.tokenType} ${this.token}`
+        }
+      })
+
+      // تحديث البيانات بعد الحذف
+      await this.getcategory()
+
+    } catch (error) {
+      console.error(error)
+    }
+  },
+    async addCategory() {
+  try {
+
+    const response = await axios.post(
+      'https://pos-sa.cloud/api/category', // <-- change endpoint if needed
+      {
+        name: this.form.name,
+        description: this.form.description
+      },
+      {
+        headers: {
+          Authorization: `${this.tokenType} ${this.token}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+
+    console.log(response.data);
+
+    // redirect after success
+    this.getcategory();
+
+  } catch (error) {
+    console.error(error.response?.data || error.message);
+  }
+},
+    async getcategory() {
       try {
-        const response = await axios.get('https://pos-sa.cloud/api/product', {
+        const response = await axios.get('https://pos-sa.cloud/api/category', {
           headers: {
             Authorization: `${this.tokenType} ${this.token}`
           }
         });
         // Assuming the API returns the array directly or in a 'data' property
-        this.products = response.data; 
+        this.category = response.data; 
       } catch (error) {
-        console.error("Error fetching products:", error);
+        console.error("Error fetching category:", error);
       }
     },
     // ... your addProduct() method

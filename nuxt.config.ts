@@ -20,21 +20,11 @@ export default defineNuxtConfig({
         { name: 'description', content: 'للخدمات المالية والحلول الرقمية.' },
       ],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/icon.png' }],
-      script: [
-        // Add Google Analytics script here
+  script: [
         {
-          src: 'https://www.googletagmanager.com/gtag/js?id=G-5WCDDVW93D', // Replace with your GA Measurement ID
-          async: true,
-        },
-        {
-          children: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-5WCDDVW93D'); // Replace with your GA Measurement ID
-          `,
-          type: 'text/javascript',
-        },
+          src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js',
+          defer: true
+        }
       ],
     },
   },
