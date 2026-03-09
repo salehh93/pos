@@ -216,7 +216,7 @@
   @change="handleFile"
 />
 
-                                    <img id=""  class="img-preview w-100" src="img/bg-slider.png" alt="your image" />
+                                    <img id=""  class="img-preview w-100" src="/img/bg-slider.png" alt="your image" />
                                 </div>
         
                     
