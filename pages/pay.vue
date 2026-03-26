@@ -150,7 +150,7 @@
                                         <label>الإسم</label>
                                 
                                         <div>
-                                            <input type="text" placeholder="ادخل الاسم" required="" name="" id="" class="form-control " value="" data-np-intersection-state="visible">
+                                            <input type="text" placeholder="ادخل الاسم" required="" name="" id="" class="form-control " v-model="client.name" data-np-intersection-state="visible">
 
                                         </div>
                                     </div> </div>
@@ -159,7 +159,16 @@
                                         <label>رقم التواصل</label>
                                 
                                         <div>
-                                            <input type="number" placeholder="0" required="" name="" id="" class="form-control " value="" data-np-intersection-state="visible">
+                                            <input type="number" placeholder="0" required="" name="" id="" class="form-control " v-model="client.phone" data-np-intersection-state="visible">
+
+                                        </div>
+                                    </div> </div>
+                                      <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label>ملاحظة</label>
+                                
+                                        <div>
+                                            <input type="text" placeholder="أدخل ملاحظة" required="" name="" id="" class="form-control " v-model="client.notes" data-np-intersection-state="visible">
 
                                         </div>
                                     </div> </div>
@@ -225,21 +234,28 @@
 import axios from 'axios';
 
 export default {
-  data() {
-    return {
-      order: {
-        clientId: null,
-        paymentStatus: "unpaid",
-        notes: "",
-        tax: 0,
-        discount: 0,
-        items: []
-      },
+ data() {
+  return {
 
-      token: process.client ? localStorage.getItem('accessToken') : '',
-      tokenType: process.client ? localStorage.getItem('tokenType') : ''
-    }
-  },
+    client: {
+      name: "",
+      phone: "",
+      notes: ""
+    },
+
+    order: {
+      clientId: null,
+      paymentStatus: "unpaid",
+      notes: "",
+      tax: 0,
+      discount: 0,
+      items: []
+    },
+
+    token: process.client ? localStorage.getItem('accessToken') : '',
+    tokenType: process.client ? localStorage.getItem('tokenType') : ''
+  }
+},
 
   mounted() {
     this.getItemsFromLocal();
@@ -275,15 +291,56 @@ removeItem(index) {
         this.order = JSON.parse(savedOrder);
       }
     },
-
-   async createOrder(paymentType) {
+async createClient() {
 
   try {
 
-    let paymentStatus = "unpaid";
+    const response = await axios.post(
+      "https://pos-sa.cloud/api/client",
+      {
+        name: this.client.name,
+        phone: this.client.phone,
+        notes: this.client.notes
+      },
+      {
+        headers: {
+          Authorization: `${this.tokenType} ${this.token}`
+        }
+      }
+    )
+
+    console.log("Client Created:", response.data)
+
+    this.order.clientId = response.data.id
+
+    return response.data.id
+
+  } catch (error) {
+    console.error("Error creating client:", error)
+    return null
+  }
+
+},
+async createOrder(paymentType) {
+
+  try {
+
+    // إنشاء العميل أولا
+    if (!this.order.clientId && this.client.name) {
+      const clientId = await this.createClient()
+
+      if (!clientId) {
+        alert("فشل إنشاء العميل")
+        return
+      }
+
+      this.order.clientId = clientId
+    }
+
+    let paymentStatus = "unpaid"
 
     if (paymentType === "cash" || paymentType === "card") {
-      paymentStatus = "paid";
+      paymentStatus = "paid"
     }
 
     const payload = {
@@ -298,7 +355,7 @@ removeItem(index) {
         unitPrice: item.unitPrice,
         notes: item.notes || ""
       }))
-    };
+    }
 
     const response = await axios.post(
       'https://pos-sa.cloud/api/order',
@@ -309,18 +366,19 @@ removeItem(index) {
           'Content-Type': 'application/json'
         }
       }
-    );
+    )
 
-    console.log("Order Created:", response.data);
+    console.log("Order Created:", response.data)
 
-    localStorage.removeItem("order");
-    this.order.items = [];
-
-    alert("تم إنشاء الطلب بنجاح ✅");
+    localStorage.removeItem("order")
+    this.order.items = []
+this.$router.push('/sales');
+     
 
   } catch (error) {
-    console.error("Error creating order:", error);
+    console.error("Error creating order:", error)
   }
+
 }
 
   }
