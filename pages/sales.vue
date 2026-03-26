@@ -315,13 +315,17 @@ export default {
       this.loadOrder();
     },
 
+
     // جلب المنتجات
     async getProducts() {
       try {
         const response = await axios.get('https://pos-sa.cloud/api/product', {
           headers: {
-            Authorization: `${this.tokenType} ${this.token}`
+            Authorization: `${this.tokenType} ${this.token}` 
           }
+
+
+          
         });
 
         this.products = response.data;
