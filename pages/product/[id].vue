@@ -17,7 +17,7 @@
         <div class="container">
             <div class="row align-items-center justify-content-between pb-3 mt-4 mt-lg-0">
                 <div class="col-auto">
-                    <h1 class="title-page">إضافة منتج جديد</h1>
+                    <h1 class="title-page"> تعديل المنتج</h1>
                 </div>
                 <div class="col-auto">
                         <nuxt-link to="/products" class="btn btn-primary loading-click">
@@ -216,8 +216,7 @@
   @change="handleFile"
 />
 
-                                    <img id=""  class="img-preview w-100" src="img/bg-slider.png" alt="your image" />
-                                </div>
+<img class="img-preview w-100" :src="imagePreview || productImage">                                </div>
         
                     
                         </div>
@@ -243,7 +242,7 @@
                             </div>
                             
                         </div>
-                        <button class="card d-block w-100 p-3 my-3 btn btn-success" @click="addProduct()" type="submit">نشر</button>
+                        <button class="card d-block w-100 p-3 my-3 btn btn-success" @click="updateProduct()" type="submit">تعديل</button>
 
 
                     </div>
@@ -312,6 +311,9 @@ axios.defaults.withCredentials = true;
 export default {
   data() {
     return {
+      imagePreview: null,
+productImage: null,
+        id: this.$route.params.id,
      token: localStorage.getItem('accessToken'),
     tokenType: localStorage.getItem('tokenType'),
       userAfter:'',
@@ -323,7 +325,7 @@ category: [], // Array to store API data
         },
       form:{
         name:'',
-        unitId:'',
+        unitId:this.$route.params.id,
         priceToPay:'',
         originalPrice:'',
         salePrice:'',
@@ -368,80 +370,110 @@ methods: {
     console.error(error.response?.data || error.message);
   }
 },
-  async getcategory() {
-   
-    try {
-      const response = await axios.get('https://pos-sa.cloud/api/category', {
-        headers: {
-          Authorization: `${this.tokenType} ${this.token}`
-        }
-      });
-      // Assuming the API returns the array directly or in a 'data' property
-      this.category = response.data; 
-    } catch (error) {
-      console.error("Error fetching category:", error);
+async getProduct() {
+  const idProduct = this.id;
+  console.log('id:  '+idProduct);
+  const response = await axios.get(
+    `https://pos-sa.cloud/api/product/${idProduct}`,
+    {
+      headers: {
+         Authorization: `${this.tokenType} ${this.token}`,
+          'Content-Type': 'application/json'
+      }
     }
-  },
-  handleFile() {
-    this.form.file = this.$refs.productImage.files[0];
-  },
-  async addProduct() {
+  )
+
+  console.log(response.data)
+  console.log('تم بنجاح')
+
+  const product = response.data
+
+  this.form.name = product.name
+  this.form.unitId = product.unitId
+  this.form.priceToPay = product.priceToPay
+  this.form.originalPrice = product.originalPrice
+  this.form.sku = product.sku
+  this.form.barcode = product.barcode
+  this.form.stockCount = product.stockCount
+  this.form.lowStockCount = product.lowStockCount
+  this.form.categoryId = product.categoryId
+
+  if (product.images && product.images.length > 0) {
+
+    const img = product.images[0].url
+
+    this.productImage =
+      "https://pos-sa.cloud/api/" + img
+
+  }
+
+}
+,
+  handleFile(e){
+
+  const file = e.target.files[0]
+
+  this.form.file = file
+
+  this.imagePreview = URL.createObjectURL(file)
+
+},
+async updateProduct() {
+
   try {
 
-   
+    const formData = new FormData()
 
-    const formData = new FormData();
+    formData.append('name', this.form.name)
+    formData.append('priceToPay', this.form.priceToPay)
+    formData.append('originalPrice', this.form.originalPrice)
+    formData.append('sku', this.form.sku)
+    formData.append('barcode', this.form.barcode)
+    formData.append('stockCount', this.form.stockCount)
+    formData.append('lowStockCount', this.form.lowStockCount)
+    formData.append('categoryId', this.form.categoryId)
+    formData.append('unitId', this.form.unitId)
 
-    formData.append('name', this.form.name);
-    formData.append('unitId', null);
-    formData.append('priceToPay', this.form.priceToPay);
-    formData.append('originalPrice', this.form.originalPrice);
-    formData.append('salePrice', this.form.salePrice);
-    formData.append('sku', this.form.sku);
-    formData.append('barcode', String(this.form.barcode || ''));
-    formData.append('stockCount', this.form.stockCount);
-    formData.append('lowStockCount', this.form.lowStockCount);
-    formData.append('categoryId', this.form.categoryId);
-
-    if (this.form.file) {
-      formData.append('file', this.form.file);
+    if(this.form.file){
+      formData.append('image', this.form.file)
     }
 
-    const response = await axios.post(
-      'https://pos-sa.cloud/api/product',
+    await axios.patch(
+      `https://pos-sa.cloud/api/product/${this.id}`,
       formData,
       {
-        headers: {
-          Authorization: `${this.tokenType} ${this.token}`,
-          'Content-Type': 'multipart/form-data'
+        headers:{
+            Authorization: `${this.tokenType} ${this.token}`,
+          'Content-Type': 'application/json'
         }
       }
-    );
+    )
 
-    console.log(response.data);
-    this.$router.push('/products');
+    this.$router.push('/products')
 
-  } catch (error) {
-    console.error(error.response?.data || error.message);
+  } catch(error){
+
+    console.log(error.response?.data)
+
   }
+
 }
 
 
 
-
-
-
-
-
   },
-  async mounted() {
-    const userdata = localStorage.getItem('user');
-    if (userdata) {
-      this.userAfter = JSON.parse(userdata);
-    }
-    
-    await this.getcategory();
+ async mounted() {
+
+  const userdata = localStorage.getItem('user');
+
+  if (userdata) {
+    this.userAfter = JSON.parse(userdata);
   }
+
+  await this.getcategory();
+  await this.getProduct();
+
+}
 }
 
   

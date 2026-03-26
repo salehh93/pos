@@ -29,15 +29,23 @@
                                    </div>
                                </div>
                                <div class="col-md-3">
-                                <button type="button" class="btn btn-dark py-2 w-100" >
+                                <button type="button" class="btn btn-dark py-2 w-100" 
+                                :class="{ 'disabled': totalPrice === 0 }"
+  :style="totalPrice === 0 ? 'pointer-events:none; opacity:0.6;' : ''"
+  >
                                   حفظ والدفع لاحقاً
                              
                                 </button>
                                </div>
                                <div class="col-md-3">
-                                <nuxt-link to="pay" type="button"   class="btn btn-success py-2 w-100" >
-دفع الان ( <b> {{ totalPrice }} $ </b> )
-                                </nuxt-link>
+                             <nuxt-link
+  to="pay"
+  class="btn btn-success py-2 w-100"
+  :class="{ 'disabled': totalPrice === 0 }"
+  :style="totalPrice === 0 ? 'pointer-events:none; opacity:0.6;' : ''"
+>
+دفع الان ( <b>{{ totalPrice }} شيكل</b> )
+</nuxt-link>
 
 
 

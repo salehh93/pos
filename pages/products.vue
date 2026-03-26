@@ -178,7 +178,7 @@
                 <div class="btn-group">
                     <button class="btn setting-dropdonw dropdown-toggle fs-14" data-bs-toggle="dropdown">اجراءات</button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#" @click="editProduct(product)">تعديل</a></li>
+                        <li><nuxt-link :to="'/product/'+product.id" class="dropdown-item" href="#" >تعديل</nuxt-link></li>
                         <li><a class="dropdown-item text-danger" href="#" @click="deleteProduct(product.id)">حذف</a></li>
                     </ul>
                 </div>
