@@ -111,6 +111,8 @@
       </div>
     </div>
   </div>
+   </div>
+  </div>
 </template>
 
 <script>
@@ -191,17 +193,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .is-invalid {
   border: 1px solid red !important;
 }
-
-<<<<<<< HEAD
-</style>
-=======
 .text-danger {
   color: red;
   font-size: 13px;
 }
 </style>
->>>>>>> eddc099 (update on login)
