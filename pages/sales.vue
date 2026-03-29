@@ -315,7 +315,6 @@ export default {
       this.loadOrder();
     },
 
-
     // جلب المنتجات
     async getProducts() {
       try {
@@ -325,7 +324,7 @@ export default {
           }
 
 
-          
+
         });
 
         this.products = response.data;
