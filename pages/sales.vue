@@ -29,15 +29,23 @@
                                    </div>
                                </div>
                                <div class="col-md-3">
-                                <button type="button" class="btn btn-dark py-2 w-100" >
+                                <button type="button" class="btn btn-dark py-2 w-100" 
+                                :class="{ 'disabled': totalPrice === 0 }"
+  :style="totalPrice === 0 ? 'pointer-events:none; opacity:0.6;' : ''"
+  >
                                   حفظ والدفع لاحقاً
                              
                                 </button>
                                </div>
                                <div class="col-md-3">
-                                <nuxt-link to="pay" type="button"   class="btn btn-success py-2 w-100" >
-دفع الان ( <b> {{ totalPrice }} $ </b> )
-                                </nuxt-link>
+                             <nuxt-link
+  to="pay"
+  class="btn btn-success py-2 w-100"
+  :class="{ 'disabled': totalPrice === 0 }"
+  :style="totalPrice === 0 ? 'pointer-events:none; opacity:0.6;' : ''"
+>
+دفع الان ( <b>{{ totalPrice }} شيكل</b> )
+</nuxt-link>
 
 
 
@@ -174,8 +182,15 @@
         </tr>
     </thead>
     <tbody>
-        <tr @click="addOrderStep1(product.id , product.name  , product.salePrice)" data-bs-toggle="modal" data-bs-target="#pay_step1_Modal" v-for="(product, index) in products" :key="product.id">
-            <td class="text-center" style="width: 5%">{{ index + 1 }}</td>
+<tr 
+  @click="addOrderStep1(product.id , product.name  , product.salePrice)" 
+  data-bs-toggle="modal" 
+  data-bs-target="#pay_step1_Modal" 
+  v-for="(product, index) in products" 
+  :key="product.id"
+  :class="{ 'selected-row': isProductSelected(product.id) }"
+>
+      <td class="text-center" style="width: 5%">{{ index + 1 }}</td>
             <td style="width: 5%">
                 <img :src="product.images?.[0]?.url 
       ? 'https://pos-sa.cloud/api/' + product.images[0].url 
@@ -213,131 +228,141 @@
     </div>    
 </template>
 
-
 <script>
 import axios from 'axios';
 
 export default {
   data() {
     return {
-        orderItems: [] ,
-        orderStep1 : {
-            productId: null,
-            productName: null,
-            productPrice: 1,
-             quantity: 1,
-            notes: ""
-
-        },
-      products: [], // Array to store API data
+      orderItems: [],
+      orderStep1: {
+        productId: null,
+        productName: null,
+        productPrice: 1,
+        quantity: 1,
+        notes: ""
+      },
+      products: [],
       token: localStorage.getItem('accessToken'),
-    tokenType: localStorage.getItem('tokenType'),
+      tokenType: localStorage.getItem('tokenType'),
     }
   },
+
   computed: {
+    totalItemsCount() {
+      return this.orderItems.reduce((sum, item) => {
+        return sum + item.quantity;
+      }, 0);
+    },
 
-  totalItemsCount() {
-    return this.orderItems.reduce((sum, item) => {
-      return sum + item.quantity;
-    }, 0);
+    totalPrice() {
+      return this.orderItems.reduce((sum, item) => {
+        return sum + (item.quantity * item.unitPrice);
+      }, 0);
+    }
   },
 
-  totalPrice() {
-    return this.orderItems.reduce((sum, item) => {
-      return sum + (item.quantity * item.unitPrice);
-    }, 0);
-  }
-
-},
   mounted() {
-     this.getProducts();
-  this.loadOrder();
-
-  },
- methods: {
-loadOrder() {
-
-  if (!process.client) return;
-
-  const savedOrder = localStorage.getItem("order");
-
-  if (savedOrder) {
-    const parsed = JSON.parse(savedOrder);
-    this.orderItems = parsed.items || [];
-  }
-},
-  addOrderStep1(productId, productName, productPrice){
-    this.orderStep1.productId = productId;
-    this.orderStep1.productName = productName;
-    this.orderStep1.productPrice = productPrice;
-    this.orderStep1.quantity = 1;
-    this.orderStep1.notes = "";
-  },
-
-  increaseQty(){
-    this.orderStep1.quantity++;
-  },
-
-  decreaseQty(){
-    if(this.orderStep1.quantity > 1){
-      this.orderStep1.quantity--;
-    }
-  },
-
-  addToLocalStorage() {
-
-    if (!process.client) return;
-
-    let order = JSON.parse(localStorage.getItem("order"));
-
-    if (!order) {
-      order = {
-        clientId: null,
-        paymentStatus: "unpaid",
-        notes: "",
-        tax: 0,
-        discount: 0,
-        items: []
-      };
-    }
-
-    const existingItem = order.items.find(
-      item => item.productId === this.orderStep1.productId
-    );
-
-    if (existingItem) {
-      // 🔥 تحديث الكمية والسعر بالقيمة الجديدة
-      existingItem.quantity = this.orderStep1.quantity;
-      existingItem.unitPrice = this.orderStep1.productPrice;
-    } else {
-      order.items.push({
-        productId: this.orderStep1.productId,
-        productName: this.orderStep1.productName,
-        quantity: this.orderStep1.quantity,
-        unitPrice: this.orderStep1.productPrice,
-        notes: this.orderStep1.notes
-      });
-    }
-
-    localStorage.setItem("order", JSON.stringify(order));
-
-    console.log("Saved Order:", order);
+    this.getProducts();
     this.loadOrder();
   },
 
-      async getProducts() {
+  methods: {
+
+    // ✅ تحميل الطلب
+    loadOrder() {
+      if (!process.client) return;
+
+      const savedOrder = localStorage.getItem("order");
+
+      if (savedOrder) {
+        const parsed = JSON.parse(savedOrder);
+        this.orderItems = parsed.items || [];
+      }
+    },
+
+    // ✅ التحقق إذا المنتج محدد
+    isProductSelected(productId) {
+      return this.orderItems.some(item => item.productId === productId);
+    },
+
+    addOrderStep1(productId, productName, productPrice) {
+      this.orderStep1.productId = productId;
+      this.orderStep1.productName = productName;
+      this.orderStep1.productPrice = productPrice;
+      this.orderStep1.quantity = 1;
+      this.orderStep1.notes = "";
+    },
+
+    increaseQty() {
+      this.orderStep1.quantity++;
+    },
+
+    decreaseQty() {
+      if (this.orderStep1.quantity > 1) {
+        this.orderStep1.quantity--;
+      }
+    },
+
+    addToLocalStorage() {
+      if (!process.client) return;
+
+      let order = JSON.parse(localStorage.getItem("order"));
+
+      if (!order) {
+        order = {
+          clientId: null,
+          paymentStatus: "unpaid",
+          notes: "",
+          tax: 0,
+          discount: 0,
+          items: []
+        };
+      }
+
+      const existingItem = order.items.find(
+        item => item.productId === this.orderStep1.productId
+      );
+
+      if (existingItem) {
+        existingItem.quantity = this.orderStep1.quantity;
+        existingItem.unitPrice = this.orderStep1.productPrice;
+      } else {
+        order.items.push({
+          productId: this.orderStep1.productId,
+          productName: this.orderStep1.productName,
+          quantity: this.orderStep1.quantity,
+          unitPrice: this.orderStep1.productPrice,
+          notes: this.orderStep1.notes
+        });
+      }
+
+      localStorage.setItem("order", JSON.stringify(order));
+      this.loadOrder();
+    },
+
+    async getProducts() {
       try {
         const response = await axios.get('https://pos-sa.cloud/api/product', {
           headers: {
             Authorization: `${this.tokenType} ${this.token}`
           }
         });
-        // Assuming the API returns the array directly or in a 'data' property
-        this.products = response.data; 
+
+        this.products = response.data;
       } catch (error) {
         console.error("Error fetching products:", error);
       }
-    },
+    }
   }
 }
 </script>
+
+
+<style>
+.selected-row {
+  background-color: #d1f7d6 !important;
+  border-right: 4px solid #28a745;
+}
+
+</style>
