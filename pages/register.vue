@@ -94,6 +94,16 @@
                 </div>
               </div>
             </div>
+            <div class="col-lg-6 h-100 ">
+                <div class=" left-background-login h-100"  >
+                   <div class="row mx-0 g-1 align-items-end justify-content-center h-100">
+                       <div class="col-lg-10">
+                        <div class="pt-4 p-lg-0 p-4">
+                           <img src="/img/login.svg" width="100%" alt="">
+                        </div>
+                       </div>
+                   </div>
+
           </div>
         </div>
 
@@ -112,6 +122,8 @@
 
       </div>
     </div>
+  </div>
+  </div>
   </div>
 </template>
 
@@ -197,3 +209,4 @@ export default {
   font-size: 13px;
 }
 </style>
+

@@ -61,7 +61,7 @@
                                     <li>
                                         <a class="dropdown-item noty-item" href="#">
                                         <div class="d-flex align-items-center">
-                                            <div class="img-noty"><img src="img/Avatar.png" width="30" alt=""></div>
+                                            <div class="img-noty"><img src="/img/Avatar.png" width="30" alt=""></div>
                                             <div>
                                                 <div class="dt-noty">
                                                     تم تسجيل شركة جديدة
@@ -74,7 +74,7 @@
                                       <li>
                                         <a class="dropdown-item noty-item" href="#">
                                         <div class="d-flex align-items-center">
-                                            <div class="img-noty"><img src="img/Avatar.png" width="30" alt=""></div>
+                                            <div class="img-noty"><img src="/img/Avatar.png" width="30" alt=""></div>
                                             <div>
                                                 <div class="dt-noty">
                                                     تم تسجيل شركة جديدة
@@ -87,7 +87,7 @@
                                       <li>
                                         <a class="dropdown-item noty-item" href="#">
                                         <div class="d-flex align-items-center">
-                                            <div class="img-noty"><img src="img/Avatar.png" width="30" alt=""></div>
+                                            <div class="img-noty"><img src="/img/Avatar.png" width="30" alt=""></div>
                                             <div>
                                                 <div class="dt-noty">
                                                     تم تسجيل شركة جديدة
@@ -113,7 +113,7 @@
                                   </div>
                                 <div class="dropdown">
                                     <button class="link-user-header dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                      <span class="img-user-header"><span class="user-name-header mx-2 d-md-inline d-none">Saleh Haboush</span> <img src="img/profile.png" alt=""></span>
+                                      <span class="img-user-header"><span class="user-name-header mx-2 d-md-inline d-none">Saleh Haboush</span> <img src="/img/profile.png" alt=""></span>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <li><a class="dropdown-item" href="#">إعدادات الحساب</a></li>

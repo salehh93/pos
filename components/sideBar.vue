@@ -3,7 +3,7 @@
         <div class="bg-white  pb-4 card-list-left h-100">
             <div id="icon-more" class="d-lg-none d-block">
                 <div class="img-user-right-icon">
-                    <img src="img/profile.png" alt="">
+                    <img src="/img/profile.png" alt="">
                 </div>
                 <div class="menu-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="31.365" viewBox="0 0 36 31.365">
@@ -14,7 +14,7 @@
             </div>
             <div class="user-menu-right pb-3 border-bottom  px-3 d-lg-block d-none">
                 <div class="img-user-right">
-                    <img src="img/logo-com.jpg" width="50" alt="">
+                    <img src="/img/logo-com.jpg" width="50" alt="">
                 </div>
                 <div class="user-name-right">بنانة فاشون</div>
             </div>

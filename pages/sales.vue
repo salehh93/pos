@@ -182,15 +182,15 @@
         </tr>
     </thead>
     <tbody>
-      <tr 
-  @click="addOrderStep1(product.id , product.name  , product.salePrice)"
+<tr 
+  @click="addOrderStep1(product.id , product.name  , product.salePrice)" 
   data-bs-toggle="modal" 
-  data-bs-target="#pay_step1_Modal"
+  data-bs-target="#pay_step1_Modal" 
   v-for="(product, index) in products" 
   :key="product.id"
   :class="{ 'selected-row': isProductSelected(product.id) }"
 >
-            <td class="text-center" style="width: 5%">{{ index + 1 }}</td>
+      <td class="text-center" style="width: 5%">{{ index + 1 }}</td>
             <td style="width: 5%">
                 <img :src="product.images?.[0]?.url 
       ? 'https://pos-sa.cloud/api/' + product.images[0].url 
@@ -228,7 +228,6 @@
     </div>    
 </template>
 
-
 <script>
 import axios from 'axios';
 
@@ -249,6 +248,20 @@ export default {
     }
   },
 
+  computed: {
+    totalItemsCount() {
+      return this.orderItems.reduce((sum, item) => {
+        return sum + item.quantity;
+      }, 0);
+    },
+
+    totalPrice() {
+      return this.orderItems.reduce((sum, item) => {
+        return sum + (item.quantity * item.unitPrice);
+      }, 0);
+    }
+  },
+
   mounted() {
     this.getProducts();
     this.loadOrder();
@@ -256,7 +269,7 @@ export default {
 
   methods: {
 
-    // ✅ تحميل الطلب من localStorage
+    // ✅ تحميل الطلب
     loadOrder() {
       if (!process.client) return;
 
@@ -273,7 +286,6 @@ export default {
       return this.orderItems.some(item => item.productId === productId);
     },
 
-    // اختيار المنتج
     addOrderStep1(productId, productName, productPrice) {
       this.orderStep1.productId = productId;
       this.orderStep1.productName = productName;
@@ -282,7 +294,16 @@ export default {
       this.orderStep1.notes = "";
     },
 
-    // حفظ في localStorage
+    increaseQty() {
+      this.orderStep1.quantity++;
+    },
+
+    decreaseQty() {
+      if (this.orderStep1.quantity > 1) {
+        this.orderStep1.quantity--;
+      }
+    },
+
     addToLocalStorage() {
       if (!process.client) return;
 
@@ -290,6 +311,11 @@ export default {
 
       if (!order) {
         order = {
+          clientId: null,
+          paymentStatus: "unpaid",
+          notes: "",
+          tax: 0,
+          discount: 0,
           items: []
         };
       }
@@ -307,15 +333,14 @@ export default {
           productName: this.orderStep1.productName,
           quantity: this.orderStep1.quantity,
           unitPrice: this.orderStep1.productPrice,
+          notes: this.orderStep1.notes
         });
       }
 
       localStorage.setItem("order", JSON.stringify(order));
-
       this.loadOrder();
     },
 
-    // جلب المنتجات
     async getProducts() {
       try {
         const response = await axios.get('https://pos-sa.cloud/api/product', {
@@ -340,6 +365,6 @@ export default {
 .selected-row {
   background-color: #d1f7d6 !important;
   border-right: 4px solid #28a745;
-  cursor: pointer;
 }
+
 </style>

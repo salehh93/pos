@@ -31,7 +31,7 @@
                 <div class="col-lg-5 order-lg-last">
                     <div class="content-product p-4">
                         <div class="logo-product">
-                            <img src="../assets/img/amwaly-logo.png" width="146" alt="amwally" title="amwally " />
+                            <img src="../assets/img/amwaly.png" width="146" alt="amwally" title="amwally " />
                         </div>
                         <p class=" my-4">
                             The best way to help you collect money from your customers online is by providing multiple payment gateways
